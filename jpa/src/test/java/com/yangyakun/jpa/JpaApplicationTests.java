@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -21,19 +22,17 @@ public class JpaApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
-		String formattedDate = dateFormat.format(date);
+		userRepository.save(new User("nickName","openid","head_img",
+				"phone",new Timestamp(1517040904000L),new Timestamp(1517040904000L)));
+		userRepository.save(new User("nickName","openid","head_img",
+				"phone",new Timestamp(1517040905000L),new Timestamp(1517040904000L)));
+		userRepository.save(new User("nickName","openid","head_img",
+				"phone",new Timestamp(1517040906000L),new Timestamp(1517040904000L)));
 
-		userRepository.save(new User("aa1", "aa123456", "aa@126.com", "aa",formattedDate));
-		userRepository.save(new User("bb2", "bb123456", "bb@126.com", "bb",formattedDate));
-		userRepository.save(new User("cc3", "cc123456", "cc@126.com", "cc",formattedDate));
-
-		Assert.assertEquals(3, userRepository.findAll().size());
-
-		System.out.println(userRepository.findAll().size());
-		System.out.println(userRepository.findByUserNameOrEmail("bb", "cc@126.com").getNickName());
-		userRepository.delete(userRepository.findByUserName("aa1"));
+//		Assert.assertEquals(3, userRepository.findAll().size());
+//
+//		System.out.println(userRepository.findAll().size());
+//		userRepository.delete(userRepository.findByUserName("aa1"));
 	}
 
 }

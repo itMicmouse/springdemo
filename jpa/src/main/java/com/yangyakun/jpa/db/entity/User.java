@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 public class User implements Serializable {
@@ -12,63 +13,38 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    private Long id;
-    @Column(nullable = false)
-    private String userName;
-    @Column(nullable = false)
-    private String passWord;
-    @Column(nullable = false)
-    private String email;
+    private Integer id;
     @Column
     private String nickName;
-    @Column(nullable = false)
-    private String regTime;
+    @Column
+    private String openId;
+    @Column
+    private String headImg;
+    @Column
+    private String phone;
+    @Column
+    private Timestamp createTime;
+    @Column
+    private Timestamp age;
+
+    public User(String nickName, String openId, String headImg, String phone, Timestamp createTime, Timestamp age) {
+        this.nickName = nickName;
+        this.openId = openId;
+        this.headImg = headImg;
+        this.phone = phone;
+        this.createTime = createTime;
+        this.age = age;
+    }
 
     public User() {
     }
 
-    public User(String userName, String passWord, String email, String nickName, String regTime) {
-        this.userName = userName;
-        this.passWord = passWord;
-        this.email = email;
-        this.nickName = nickName;
-        this.regTime = regTime;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getNickName() {
@@ -79,11 +55,56 @@ public class User implements Serializable {
         this.nickName = nickName;
     }
 
-    public String getRegTime() {
-        return regTime;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setRegTime(String regTime) {
-        this.regTime = regTime;
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getAge() {
+        return age;
+    }
+
+    public void setAge(Timestamp age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", openId='" + openId + '\'' +
+                ", headImg='" + headImg + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createTime=" + createTime +
+                ", age=" + age +
+                '}';
     }
 }
